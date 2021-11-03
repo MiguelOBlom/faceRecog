@@ -2,4 +2,5 @@ colorferet/
 detec/
 imgs/
 MaskTheFace/
+recognition-env/
 *.xml
