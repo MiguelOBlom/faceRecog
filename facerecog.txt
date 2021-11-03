@@ -1,0 +1,91 @@
+Face recognition with face mask
+supervised method
+probably unlabeled data
+
+Mask gallery
+Face dataset
+	Requirements:
+		- Strong requirement: images grouped by person (img - id relationship)
+		- Needs to be representative of general population
+		- Needs to be representative of "portraits"
+		- Weak requirement: multiple images per person
+
+	Visited:
+		10 Face Datasets To Start Facial Recognition Projects
+		https://analyticsindiamag.com/10-face-datasets-to-start-facial-recognition-projects/
+
+
+	Candidates:
+		- WIDER FACE: A Face Detection Benchmark
+			[Unqualified] Labeled on scale, pose, occlusion, expression, makeup and illumination, but no IDs
+			http://shuoyang1213.me/WIDERFACE/
+
+
+		- color FERET Database
+			Had to mail them, got a database
+			Different angles of same person
+			But some are grayscale
+			https://www.nist.gov/itl/products-and-services/color-feret-database
+
+
+		- Flickr-Faces-HQ Dataset (FFHQ)
+			[Unqualified] Not labeled on IDs
+			https://github.com/NVlabs/ffhq-dataset
+
+		- Large-scale CelebFaces Attributes (CelebA) Dataset
+			May be biased, celebrity faces may not be representative of general population
+			"In the wild" images, so may not be representative of "portraits"
+			http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html
+
+		- Labelled Faces in the Wild Home (LFW) Dataset
+			Celebrity faces again
+			In the wild
+			E.g. there are images in this dataset where tennis players pull a weird face while hitting a ball...
+			http://vis-www.cs.umass.edu/lfw/
+			https://www.kaggle.com/atulanandjha/lfwpeople
+
+		- Cross-Age LFW 
+			used in https://arxiv.org/pdf/2109.05804v2.pdf
+			similar to usual LFW, but different ages
+			http://whdeng.cn/CALFW/index.html?reload=true
+
+		- Pins Face Recognition
+			Cropped images of celebrities
+			https://www.kaggle.com/hereisburak/pins-face-recognition
+	
+	
+		- Face masks (with(out)/incorrectly): https://www.kaggle.com/andrewmvd/face-mask-detection
+
+
+Going with the FERET database for now...
+cd data/images;
+for i in {0..9}; do sudo bunzip2 *$i/*.ppm.bz2; done
+
+11338 images and 997 people
+
+
+
+
+
+
+OpenCV can already detect my face and my face with a mask on
+
+We are given a face and a cascade
+
+Face recognition tutorial
+https://www.mygreatlearning.com/blog/face-recognition/
+
+
+Can we create face recognition that improves upon full face recogntion when the faces wear masks?
+- How good does full face recognition work for full faces and faces with masks?
+	- Get a labeled dataset of faces + the same faces with masks
+	- Create a face recongizer that predicts the labels of the faces
+	- Train the full(/masked/mixed <- probably no) face recognizer on the full faces dataset and predict seen/unseen full/masked/mixed faces
+	- See where we can improve
+- How can we improve on this?
+	- Cascade?
+	- Train on masked faces?
+
+https://www.pyimagesearch.com/2018/09/24/opencv-face-recognition/
+
+Make histogram of picture
